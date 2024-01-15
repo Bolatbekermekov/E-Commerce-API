@@ -44,16 +44,16 @@ app.use(express.static('./public'))
 app.use(fileUpload())
 
 //Swagger UI
-// const swaggerUI = require("swagger-ui-express")
-// const YAML = require('yamljs')
-// const swaggerDocument = YAML.load('./swagger.yaml')
+const swaggerUI = require("swagger-ui-express")
+const YAML = require('yamljs')
+const swaggerDocument = YAML.load('./swagger.yaml')
 
 
-app.get("/",(req,res)=>{
+app.get("/api",(req,res)=>{
   res.send("<h1>Chee Taaam</h1><a href='/api-docs'>Documentation</a>")
 })
 
-// app.use("/api-docs",swaggerUI.serve,swaggerUI.setup(swaggerDocument))
+app.use("/api-docs",swaggerUI.serve,swaggerUI.setup(swaggerDocument))
 
 // app.use(express.static("./public"))
 app.use("/api/auth",authRouter)
